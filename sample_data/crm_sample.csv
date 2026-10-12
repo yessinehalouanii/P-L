@@ -1,0 +1,3 @@
+﻿lead_id,company,account_type,sales_manager,created_date,event_date,rooms_requested,room_revenue_estimate,fb_revenue_estimate,total_opportunity,stage,probability_pct,lead_source,response_time_hours,status,negotiated_rate,room_nights,ytd_revenue,prior_year_revenue,lost_reason
+L-202,BC Medical Association,Group,Maya,2026-09-07,2026-12-03,180,68000,27000,95000,Negotiation,75,Referral,2.2,Open,214,180,112000,101000,
+L-201,Northshore Tech,Corporate,Jessica,2026-09-01,2026-11-12,120,42000,18000,60000,Proposal,65,Website,1.5,Open,209,120,87000,74000,

@@ -1,0 +1,2 @@
+﻿date,electricity_kwh,electricity_cost,gas_m3,gas_cost,water_m3,water_cost,waste_kg,waste_cost,peak_demand_kw,hvac_runtime_hours,carbon_kgco2e
+2026-09-30,186000,28500,12100,7200,3150,5100,8400,2200,610,1920,47800

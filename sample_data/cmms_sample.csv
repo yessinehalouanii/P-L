@@ -1,0 +1,13 @@
+﻿work_order_id,opened_at,closed_at,department,location,asset_id,asset_name,problem,type,priority,technician,status,labour_hours,parts_cost,labour_cost,total_cost,downtime_hours,preventive_due_date,preventive_completed,repeat_failure,capex_flag
+PM-8904,2026-09-14 08:00,2026-09-14 10:00,Engineering,Plant Room,BOILER-4,Boiler,Scheduled PM,Preventive,Normal,Engineering Team,Completed,2,50,95,145,1,,Yes,No,No
+PM-8903,2026-09-13 08:00,2026-09-13 10:00,Engineering,Plant Room,BOILER-3,Boiler,Scheduled PM,Preventive,Normal,Engineering Team,Completed,2,50,95,145,1,,Yes,No,No
+PM-8902,2026-09-12 08:00,2026-09-12 10:00,Engineering,Plant Room,BOILER-2,Boiler,Scheduled PM,Preventive,Normal,Engineering Team,Completed,2,50,95,145,1,,Yes,No,No
+PM-8901,2026-09-11 08:00,2026-09-11 10:00,Engineering,Plant Room,BOILER-1,Boiler,Scheduled PM,Preventive,Normal,Engineering Team,Completed,2,50,95,145,1,,Yes,No,No
+WO-8808,2026-09-13 09:00,2026-09-13 15:00,Engineering,Room 308,HVAC-8,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,220,120,340,6,,,No,No
+WO-8807,2026-09-12 09:00,2026-09-12 15:00,Engineering,Room 307,HVAC-7,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,210,120,330,6,,,No,No
+WO-8806,2026-09-11 09:00,2026-09-11 15:00,Engineering,Room 306,HVAC-6,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,200,120,320,6,,,No,No
+WO-8805,2026-09-10 09:00,2026-09-10 15:00,Engineering,Room 305,HVAC-5,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,190,120,310,6,,,No,No
+WO-8804,2026-09-09 09:00,2026-09-09 15:00,Engineering,Room 304,HVAC-4,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,180,120,300,6,,,Yes,Yes
+WO-8803,2026-09-08 09:00,2026-09-08 15:00,Engineering,Room 303,HVAC-3,Fan Coil Unit,Cooling issue,Reactive,Medium,Engineering Team,Completed,2.5,170,120,290,6,,,No,No
+WO-8802,2026-09-07 09:00,2026-09-07 15:00,Engineering,Room 302,HVAC-2,Fan Coil Unit,Cooling issue,Reactive,High,Engineering Team,Completed,2.5,160,120,280,6,,,Yes,Yes
+WO-8801,2026-09-06 09:00,2026-09-06 15:00,Engineering,Room 301,HVAC-1,Fan Coil Unit,Cooling issue,Reactive,High,Engineering Team,Completed,2.5,150,120,270,6,,,No,No

@@ -1,0 +1,5 @@
+﻿employee_id,department,job_title,hire_date,employment_type,status,manager,termination_date,termination_reason,training_status,training_completion_pct,performance_score,promotion_date,sick_days,engagement_score,enps,recruitment_cost
+E104,F&B,Server,2026-06-02,Part-Time,Active,F&B Manager,,,In Progress,74,3.9,,3,70,22,1200
+E103,Front Office,Guest Service Agent,2025-05-09,Full-Time,Active,Front Office Manager,,,Complete,100,4.5,,1,81,44,1650
+E102,Housekeeping,Room Attendant,2026-01-14,Full-Time,Terminated,Executive Housekeeper,2026-09-18,Voluntary,Complete,84,3.8,,4,61,8,1950
+E101,Housekeeping,Room Attendant,2026-03-01,Full-Time,Active,Executive Housekeeper,,,Complete,92,4.1,,2,72,28,1800

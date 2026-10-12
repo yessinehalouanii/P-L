@@ -1,0 +1,6 @@
+﻿business_date,check_id,outlet,meal_period,server,table_no,open_time,close_time,covers,gross_sales,discounts,complimentary,net_sales,tax,tip,payment_type,item_name,item_category,quantity,item_sales,item_cost,void_flag,void_amount,waste_qty
+2026-09-15,CHK-5805,Room Service,All Day,Team,,,,420,18746.0,364.0,182.0,18200,,,,,,,18200,6100,No,72.8,15
+2026-09-14,CHK-5804,Banquets,Event,Team,,,,1240,71482.0,1388.0,694.0,69400,,,,,,,69400,22400,No,277.6,12
+2026-09-13,CHK-5803,Lobby Bar,Evening,Team,,,,610,32754.0,636.0,318.0,31800,,,,,,,31800,7600,No,127.2,9
+2026-09-12,CHK-5802,Main Restaurant,Dinner,Team,,,,920,51603.0,1002.0,501.0,50100,,,,,,,50100,16600,No,200.4,6
+2026-09-11,CHK-5801,Main Restaurant,Breakfast,Team,,,,1150,26059.0,506.0,253.0,25300,,,,,,,25300,8700,No,101.2,3

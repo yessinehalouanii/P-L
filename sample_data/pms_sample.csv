@@ -1,0 +1,2 @@
+﻿business_date,available_rooms,rooms_sold,occupied_rooms,out_of_order_rooms,complimentary_rooms,house_use_rooms,occupancy_pct,room_revenue,adr,revpar,arrivals,departures,stayovers,adults,children,no_shows,cancellations,walk_ins,reservation_id,guest_id,booking_date,arrival_date,departure_date,nights,room_type,rate,market_segment,booking_source,channel,rate_code,company,group_code,status
+2026-09-30,3000,2472,2472,38,21,14,82.4,541368,219,180.456,948,936,1524,3310,402,42,176,88,,,,,,,,,All,All,All,,,,

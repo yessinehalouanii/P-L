@@ -1,0 +1,4 @@
+﻿review_id,date,source,rating,guest_type,language,overall_satisfaction,nps,cleanliness_score,room_score,service_score,fb_score,checkin_score,checkout_score,value_score,likelihood_return,complaint_category,complaint_subcategory,complaint_opened,complaint_closed,resolution_minutes,compensation,comment,sentiment
+R3,2026-09-18,Booking.com,4.2,Family,,88,68,92,84,86,80,79,90,83,86,,,,,,,Good stay overall.,Positive
+R2,2026-09-12,Guest Survey,4,Business,,86,65,93,85,84,75,74,92,80,84,F&B,Breakfast speed,,,34,,Breakfast service was slow during the peak.,Mixed
+R1,2026-09-08,Google,4,Couple,,84,60,91,86,82,78,72,89,82,80,Front Office,Check-in queue,,,28,,Room was clean but arrival wait was too long.,Mixed

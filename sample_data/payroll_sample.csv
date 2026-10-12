@@ -1,0 +1,6 @@
+﻿employee_id,employee_name,department,position,employment_type,date,shift_start,shift_end,scheduled_hours,actual_hours,regular_hours,overtime_hours,hourly_rate,regular_pay,overtime_pay,total_labour_cost,absence,late,budget_hours,budget_labour_cost
+DEPT-5,Department Total,Sales & Marketing,Mixed,Mixed,2026-09-30,,,320,325,321,4,0,12144.0,1056.0,13200,0,0,320,13000
+DEPT-4,Department Total,Engineering,Mixed,Mixed,2026-09-30,,,480,500,489,11,0,14904.0,1296.0,16200,0,0,480,15500
+DEPT-3,Department Total,F&B,Mixed,Mixed,2026-09-30,,,1680,1760,1711,49,0,75440.0,6560.0,82000,0,0,1680,70000
+DEPT-2,Department Total,Front Office,Mixed,Mixed,2026-09-30,,,620,630,618,12,0,16652.0,1448.0,18100,0,0,620,17600
+DEPT-1,Department Total,Housekeeping,Mixed,Mixed,2026-09-30,,,1420,1450,1408,42,0,33304.0,2896.0,36200,0,0,1420,33000
