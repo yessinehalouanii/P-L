@@ -106,11 +106,11 @@ function reviewsPage(){
 }
 async function render(){loading();try{await boot();let c='';if(state.page==='overview')c=overview();else if(state.page==='data')c=dataCenter();else if(state.page==='pl')c=await plPage();else if(['revenue','labour','guest','employee','operations','asset','sales'].includes(state.page))c=domainPage(state.page);else if(state.page==='recommendations')c=recommendationsPage();else if(state.page==='mystery')c=await mysteryPage();else if(state.page==='quick')c=quickPage();else if(state.page==='journey')c=journeyPage();else if(state.page==='reviews')c=reviewsPage();document.querySelector('#app').innerHTML=shell(c);const p=document.querySelector('#period');if(p)p.value=state.period;}catch(e){document.querySelector('#app').innerHTML=shell(`<div class="card pad"><h3>Unable to load the demo</h3><p>${esc(e.message)}</p></div>`);}}
 function toast(title,msg){document.querySelector('#toast-root').innerHTML=`<div class="toast"><strong>${esc(title)}</strong><span>${esc(msg)}</span></div>`;setTimeout(()=>document.querySelector('#toast-root').innerHTML='',3200)}
-function modal(title,body,footer='<button class="btn" data-action="closeModal">Close</button>'){document.querySelector('#modal-root').innerHTML=`<div class="modal-backdrop" data-action="closeOutside"><div class="modal" onclick="event.stopPropagation()"><div class="modal-head"><h3>${esc(title)}</h3><button class="close" data-action="closeModal">×</button></div><div class="modal-body">${body}</div><div class="modal-foot">${footer}</div></div></div>`}
+function modal(title,body,footer='<button class="btn" data-action="closeModal">Close</button>'){document.querySelector('#modal-root').innerHTML=`<div class="modal-backdrop" data-action="closeOutside"><div class="modal" data-modal-content><div class="modal-head"><h3>${esc(title)}</h3><button class="close" data-action="closeModal">×</button></div><div class="modal-body">${body}</div><div class="modal-foot">${footer}</div></div></div>`}
 function fieldInput(f){const lower=f.toLowerCase();const num=['actual','budget','prior','revenue','cost','hours','rate','score','pct','occupancy','adr','revpar','rooms','sales','covers','quantity','amount','nps','downtime','kwh','m3','kg','probability','users','sessions','bookings','clicks','impressions','compensation'].some(x=>lower.includes(x));const date=lower==='date'||lower.endsWith('_date')||lower.includes('opened_at')||lower.includes('closed_at');return `<div class="field"><label>${esc(f)}</label><input name="${esc(f)}" ${num?'type="number" step="any"':date?'type="date"':'type="text"'}></div>`}
 function sourceDetail(k){const s=state.catalog[k],st=state.status[k];modal(s.name,`<p class="subtle">${esc(s.description)}</p><div class="grid g2"><div class="card pad" style="box-shadow:none"><h3>Fields accepted</h3><div class="fieldchips">${s.fields.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div></div><div class="card pad" style="box-shadow:none"><h3>Metrics supported</h3><div class="signal-list">${s.metrics.map(m=>`<div class="signal"><strong>${esc(m)}</strong><span class="badge green">Derived</span></div>`).join('')}</div></div></div><div class="callout" style="margin-top:14px"><strong>Current data</strong><span>${st.count} rows loaded. The source can be updated by CSV/XLSX upload or manual entry.</span></div>`)}
 function manualModal(k){const s=state.catalog[k];modal('Manual entry · '+s.name,`<form id="manualForm"><input type="hidden" name="source" value="${k}"><div class="form-grid">${s.fields.map(fieldInput).join('')}</div></form>`,`<button class="btn" data-action="closeModal">Cancel</button><button class="btn primary" data-action="saveManual" data-source="${k}">Save record</button>`)}
-function uploadModal(k){const s=state.catalog[k];modal('Upload · '+s.name,`<p class="subtle">Upload a CSV or XLSX export from the hotel system. The demo automatically maps matching headers into the STEPS common data model.</p><div class="field"><label>Period / label</label><input id="uploadPeriod" value="${esc(state.period)}"></div><div class="field" style="margin-top:12px"><label>CSV or XLSX file</label><input id="uploadFile" type="file" accept=".csv,.xlsx,.xlsm"></div><div class="callout" style="margin-top:14px"><strong>Expected fields</strong><span>${esc(s.fields.join(', '))}</span></div>`,`<button class="btn" data-action="closeModal">Cancel</button><button class="btn primary" data-action="doUpload" data-source="${k}">Import & analyze</button>`)}
+function uploadModal(k){const s=state.catalog[k];modal('Upload · '+s.name,`<form id="uploadForm" data-source="${esc(k)}"><p class="subtle">Upload a CSV or XLSX export from the hotel system. The demo automatically maps matching headers into the STEPS common data model.</p><div class="field"><label for="uploadPeriod">Period / label</label><input id="uploadPeriod" name="period" value="${esc(state.period)}"></div><div class="field" style="margin-top:12px"><label for="uploadFile">CSV or XLSX file</label><input id="uploadFile" name="file" type="file" accept=".csv,.xlsx,.xlsm" required></div><div class="callout" style="margin-top:14px"><strong>Expected fields</strong><span>${esc(s.fields.join(', '))}</span></div><div id="uploadStatus" class="subtle" role="status" aria-live="polite" style="margin-top:12px"></div></form>`,`<button class="btn" type="button" data-action="closeModal">Cancel</button><button class="btn primary" type="submit" form="uploadForm" data-source="${esc(k)}">Import & analyze</button>`)}
 function recModal(id){const r=state.recs.find(x=>x.id==id);if(!r)return;modal(r.title,`<div class="question"><small>${esc(r.domain)} · ${r.confidence}% evidence confidence</small><h3>What the data is telling us</h3><p>${esc(r.recommendation)}</p></div><div class="section-head" style="margin-top:16px"><div><h3>Evidence</h3><p>Traceable inputs behind the finding.</p></div></div><div class="signal-list">${r.evidence.map(e=>`<div class="signal"><strong>${esc(e)}</strong><span class="badge green">Verified</span></div>`).join('')}</div><div class="callout" style="margin-top:14px"><strong>Expected impact</strong><span>${esc(r.impact)}. Consultant approval is required before an action is created.</span></div>`,`<button class="btn" data-action="closeModal">Close</button><button class="btn primary" data-action="approveRec" data-id="${r.id}">Approve recommendation</button>`)}
 function newActionModal(){modal('Create SMART action',`<form id="actionForm"><div class="form-grid"><div class="field span2"><label>Action</label><input name="title" required value="Implement approved STEPS recommendation"></div><div class="field"><label>Domain</label><input name="domain" value="Operations"></div><div class="field"><label>Owner</label><input name="owner" value="Department Head"></div><div class="field"><label>Priority</label><select name="priority"><option>High</option><option>Medium</option><option>Low</option></select></div><div class="field"><label>Due date</label><input type="date" name="due_date" value="2026-10-30"></div><div class="field span2"><label>Target</label><input name="target" value="Measurable KPI improvement"></div><div class="field span2"><label>Guest / operating guardrail</label><textarea name="guardrail">Do not reduce guest experience or service standards.</textarea></div></div></form>`,`<button class="btn" data-action="closeModal">Cancel</button><button class="btn primary" data-action="saveAction">Create action</button>`)}
 async function handleAction(a,el){
@@ -127,10 +127,7 @@ async function handleAction(a,el){
     const f=document.querySelector('#manualForm');const fd=new FormData(f);const data={};for(const [k,v] of fd.entries()){if(k==='source'||v==='')continue;data[k]=v}
     const r=await fetch(`${API}/source/${el.dataset.source}/manual`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({property_name:state.property,period:state.period,data})});if(!r.ok){toast('Could not save',await r.text());return}document.querySelector('#modal-root').innerHTML='';await boot(true);await render();toast('Record saved','KPIs and recommendations were recalculated.');return
   }
-  if(a==='doUpload'){
-    const inp=document.querySelector('#uploadFile');if(!inp.files[0]){toast('Choose a file','Select a CSV or XLSX export first.');return}const fd=new FormData();fd.append('property_name',state.property);fd.append('period',document.querySelector('#uploadPeriod').value);fd.append('file',inp.files[0]);
-    const r=await fetch(`${API}/source/${el.dataset.source}/upload`,{method:'POST',body:fd});const res=await r.json();if(!r.ok){toast('Import failed',res.detail||'Could not import file.');return}document.querySelector('#modal-root').innerHTML='';await boot(true);await render();toast('Import complete',`${res.rows_imported} rows loaded · ${Object.keys(res.mapping).length} columns mapped${res.unmapped.length?' · '+res.unmapped.length+' unmapped':''}.`);return
-  }
+  if(a==='doUpload'){const form=document.querySelector('#uploadForm');if(form)await submitUpload(form,el);return}
   if(a==='approveRec'){
     const id=el.dataset.id;await fetch(`${API}/recommendations/${id}/Approved`,{method:'POST'});document.querySelector('#modal-root').innerHTML='';await boot(true);await render();toast('Recommendation approved','It is ready to convert into a SMART action.');return
   }
@@ -138,6 +135,38 @@ async function handleAction(a,el){
     const fd=new FormData(document.querySelector('#actionForm'));const obj=Object.fromEntries(fd.entries());obj.property_name=state.property;const r=await fetch(API+'/actions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)});if(!r.ok){toast('Could not create action','Check required fields.');return}document.querySelector('#modal-root').innerHTML='';await boot(true);await render();toast('SMART action created','Owner, target, due date and guardrail saved.');return
   }
 }
-document.addEventListener('click',async e=>{const n=e.target.closest('[data-nav]');if(n){state.page=n.dataset.nav;await render();window.scrollTo(0,0);return}const t=e.target.closest('[data-pltab]');if(t){state.plTab=t.dataset.pltab;await render();return}const a=e.target.closest('[data-action]');if(a)await handleAction(a.dataset.action,a)});
+async function submitUpload(form,trigger){
+  const button=trigger?.matches('[type="submit"]')?trigger:document.querySelector('[data-action="doUpload"]');
+  const input=form.querySelector('[name="file"]');
+  const status=form.querySelector('#uploadStatus');
+  if(!input?.files?.[0]){if(status)status.textContent='Select a CSV or XLSX file first.';toast('Choose a file','Select a CSV or XLSX export first.');return}
+  const source=form.dataset.source;
+  const fd=new FormData();
+  fd.append('property_name',state.property);
+  fd.append('period',form.querySelector('[name="period"]')?.value||state.period);
+  fd.append('file',input.files[0]);
+  if(button){button.disabled=true;button.dataset.originalLabel=button.textContent;button.textContent='Importing...'}
+  if(status)status.textContent='Importing and recalculating KPIs…';
+  try{
+    const r=await fetch(`${API}/source/${encodeURIComponent(source)}/upload`,{method:'POST',body:fd});
+    const raw=await r.text();
+    let res;try{res=raw?JSON.parse(raw):{};}catch(_){res={detail:raw||'The server returned an invalid response.'};}
+    if(!r.ok)throw new Error(res.detail||res.message||'Could not import file.');
+    await boot(true);
+    const imported=Number(res.rows_imported)||0;
+    document.querySelector('#modal-root').innerHTML='';
+    await render();
+    toast('Import complete',`${imported} row${imported===1?'':'s'} imported successfully`);
+  }catch(error){
+    const message=error?.message||'Import failed. Please try again.';
+    if(status)status.textContent=message;
+    toast('Import failed',message);
+    if(button){button.disabled=false;button.textContent=button.dataset.originalLabel||'Import & analyze';}
+  }
+}
+
+document.addEventListener('submit',async e=>{if(e.target.id==='uploadForm'){e.preventDefault();await submitUpload(e.target,e.submitter);return}if(e.target.id==='manualForm'||e.target.id==='actionForm')e.preventDefault()});
+document.addEventListener('click',async e=>{const n=e.target.closest('[data-nav]');if(n){state.page=n.dataset.nav;await render();window.scrollTo(0,0);return}const t=e.target.closest('[data-pltab]');if(t){state.plTab=t.dataset.pltab;await render();return}const a=e.target.closest('[data-action]');if(!a||(a.dataset.action==='closeOutside'&&e.target!==a))return;try{await handleAction(a.dataset.action,a)}catch(error){toast('Action failed',error?.message||'Something went wrong.');}});
 document.addEventListener('change',e=>{if(e.target.id==='period'){state.period=e.target.value;render()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.querySelector('#modal-root')?.innerHTML)document.querySelector('#modal-root').innerHTML='';});
 render();
